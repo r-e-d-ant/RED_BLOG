@@ -1,0 +1,30 @@
+﻿@page
+@model RED_BLOG.Pages.Account.RegisterModel
+@{
+}
+
+<div class="container">
+    @if (Model.message.Length > 0)
+    {
+        <div class="alert alert-info">
+            @Model.message
+        </div>
+    }
+
+    <form method="post">
+        <div class="form-group">
+            <label for="fullname">Fullname</label>
+            <input type="text" class="form-control" id="fullname" name="fullname">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password">
+        </div>
+        <button type="submit" class="btn btn-primary mt-4">Register</button>
+        <a href="/Account/Login">Already heave an account Login</a>
+    </form>
+</div>

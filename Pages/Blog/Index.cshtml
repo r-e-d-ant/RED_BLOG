@@ -1,0 +1,52 @@
+﻿@page
+@model RED_BLOG.Pages.Blog.IndexModel
+@{
+}
+
+<div class="container">
+    <h3 class="text-center mb-4 mt-4">Red Blogs</h3>
+    @if (Model.message != null)
+    {
+        <div class="alert alert-info">
+            @Model.message
+        </div>
+    }
+
+    @if (User.Identity != null && User.Identity.IsAuthenticated)
+    {
+        <div class="row gap-4">
+            @foreach (var blog in Model.blogsList)
+            {
+                <div class="card" style="width: 30rem;">
+                    <div class="card-body">
+                        <h4 class="card-title">@blog.Title</h4>
+                        <p class="card-text">@blog.Body</p>
+                        <h6 class="card-subtitle mb-2 text-muted">by @blog.blogger on @blog.postedTime</h6>
+
+                        @if (Model.blogUser.userId.Equals(blog.bloggerId))
+                        {
+                            <a href="/Edit?id=@blog.postId" class="card-link">Edit</a>
+                            <a href="/Delete?id=@blog.postId" class="card-link text-danger">Delete</a>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+
+        <span class="text-muted text-center mt-4">Logged In as @Model.blogUser.fullname - @Model.blogUser.role</span>
+    } else
+    {
+        <div class="row gap-4">
+            @foreach (var blog in Model.blogsList)
+            {
+                <div class="card" style="width: 30rem;">
+                    <div class="card-body">
+                        <h4 class="card-title">@blog.Title</h4>
+                        <p class="card-text">@blog.Body</p>
+                        <h6 class="card-subtitle mb-2 text-muted">by @blog.blogger on @blog.postedTime</h6>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
